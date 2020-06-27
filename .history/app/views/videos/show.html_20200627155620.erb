@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@video) do |f| %>
+    <% if @video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
+
+      <ul>
+        <% @video.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :category %><br>
+      <%= collection_select(:video,:category_id,Category.find(@video.category_id),:id,:name,{:prompt=>true},{:class => 'form-control'}) %>
+    </div>
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :url %><br>
+      <%= f.text_field :url, class: 'form-control' %>
+    </div>
+    <div class="actions text-right mt-2">
+      <%= link_to 'Edit', edit_video_path(@video), class: 'btn btn-warning p-2' %> |
+      <%= link_to 'Voltar', videos_path, class: 'btn btn-secondary p-2' %>
+    </div>
+    <% end %>
+  </div>
+</div>

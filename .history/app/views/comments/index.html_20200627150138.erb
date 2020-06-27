@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Lista de Videos</h2>
+        </div>
+        <div class="col-sm-6 text-right">
+          <%= link_to 'Novo vídeo', new_video_path, class: 'btn btn-success' %>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Título</th>
+          <th>URL</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @comments.each do |comment| %>
+        <tr>
+          <td><%= comment.id %></td>
+          <td><%= comment.author %></td>
+          <td><%= video.comment %></td>
+          <td><%= video.video ? video.video.title : "Sem Video" %></td>
+          <td>
+            <%= link_to 'Exibir', video, class: 'btn btn-info' %>
+            <%= link_to 'Editar', edit_video_path(video), class: 'btn btn-warning' %>
+            <%= link_to 'Excluir', video, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h1>Listing Comments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Autor</th>
+      <th>Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.author %></td>
+        <td><%= comment.comment %></td>
+        <td><%= link_to 'Show', comment %></td>
+        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comment', new_comment_path %>

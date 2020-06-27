@@ -1,0 +1,16 @@
+<div class="alert alert-success" role="alert">
+  <%= notice %>
+</div>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<p>
+  <strong>Favorite:</strong>
+  <%= @category.favorite %>
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
