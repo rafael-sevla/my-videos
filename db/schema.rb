@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200627143301) do
+ActiveRecord::Schema.define(version: 20200627144411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,13 +28,21 @@ ActiveRecord::Schema.define(version: 20200627143301) do
     t.text     "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "video_id"
   end
+
+  add_index "comments", ["video_id"], name: "index_comments_on_video_id", using: :btree
 
   create_table "videos", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "category_id"
   end
 
+  add_index "videos", ["category_id"], name: "index_videos_on_category_id", using: :btree
+
+  add_foreign_key "comments", "videos"
+  add_foreign_key "videos", "categories"
 end

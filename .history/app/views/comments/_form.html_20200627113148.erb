@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :video %><br>
-    <%= collection_select(:comment,:video_id,Video.all,:id,:title) %>
-  </div>
-  <div class="field">
     <%= f.label :autor %><br>
     <%= f.text_field :autor %>
   </div>
