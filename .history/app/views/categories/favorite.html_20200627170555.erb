@@ -1,0 +1,8 @@
+<% @categories.each do |category| %>
+    <h1><%= category.name %></h1>
+    <% category.videos.each do |video| %>
+    <h3><%= video.title %></h3>
+    <br />
+    <% end %>
+    <br />
+<% end %>

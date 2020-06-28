@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <h1><%= @video.title %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body" style="height: 40em;">
+          <iframe class="w-100 h-100" src="<%= @video.url %>">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-sm-12 text-center">
+      <h2>Comentários</h2>
+    </div>
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <%= form_for(@comment) do |f| %>
+          <% if @comment.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+            <ul>
+              <% @comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+          <%= f.hidden_field :video_id, class: 'form-control', value: @video.id %>
+          <div class="field">
+            <%= f.label :autho, "Autor" %><br>
+            <%= f.text_field :author, class: 'form-control' %>
+          </div>
+          <div class="field">
+            <%= f.label :comment, "Comentário" %><br>
+            <%= f.text_area :comment, class: 'form-control' %>
+          </div>
+          <div class="actions text-right mt-2">
+            <%= f.submit value: 'Adicionar Comentário',class: 'btn btn-success p-2' %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% @video.comment.each do |comment| %>
+    <div class="col-sm-12 mt-3">
+      <div class="card col-sm-12 p-0">
+        <div class="card-header">
+          <%= comment.author %>
+          <%= comment.created_at %>
+        </div>
+        <div class="card-body">
+          <%= comment.comment %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

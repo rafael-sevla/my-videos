@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h1>Meu Vídeos Favoritos</h1>
+        </div>
+    </div>
+    <div class="row">
+        <% @categories.each do |category| %>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h1><%= category.name %></h1>
+            </div>
+        </div>
+        <div class="row">
+            <% category.video.each do |video| %>
+                <div class="col-sm-3>
+                    <h1><%= video.title %></h1>
+                </div>
+            <% end %>
+        </div>
+        <% end %>
+    </div>
+</div>
+
+
+
+<% category.video.each do |video| %>
+<h3><%= video.title %></h3>
+<br />
+<% end %>
+<br />
